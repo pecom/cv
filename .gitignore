@@ -1,0 +1,13 @@
+*.bst
+cv-blx.bib
+cv.aux
+cv.bbl
+cv.blg
+cv.log
+cv.out
+cv.run.xml
+cv1-*
+cv2-*
+minor.log
+texput.log
+
