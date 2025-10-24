@@ -1,0 +1,352 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2021 Jitin Nair
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%	
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%	
+%
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT DEFINITION
+%----------------------------------------------------------------------------------------
+
+% article class because we want to fully customize the page and not use a cv template
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+% % fontspec allows you to use TTF/OTF fonts directly
+% \usepackage{fontspec}
+% \defaultfontfeatures{Ligatures=TeX}
+
+% % modified for ShareLaTeX use
+% \setmainfont[
+% SmallCapsFont = Fontin-SmallCaps.otf,
+% BoldFont = Fontin-Bold.otf,
+% ItalicFont = Fontin-Italic.otf
+% ]
+% {Fontin.otf}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9,showframe=false]{geometry}
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{changepage}
+\usepackage{longtable}
+\usepackage{academicons}
+
+ 
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=none,maxbibnames=2,backend=bibtex,dashed=false]{biblatex}
+% \usepackage[style=authoryear,sorting=ydnt]{biblatex}
+\addbibresource{major.bib}
+\addbibresource{minor.bib}
+% \bibliographystyle{amsplain0}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.6,0.6}
+\definecolor{linkcolour}{rgb}{0.0,0.259,0.01}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+
+%----------------------------------------------------------------------------------------
+%	Custom commands / environments
+%----------------------------------------------------------------------------------------
+
+% job listing environments
+\newenvironment{jobshort}[1]
+    {
+	    \textbf{#1} 
+    }
+
+\newenvironment{joblong}[2]
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\[3.75pt]
+    \end{tabularx}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
+    }
+    {
+    \end{itemize}
+    \end{minipage}    
+    }
+
+% Section block
+% Used to be (2.7 cm, 13.8 cm)
+% \newcommand{\sectionBlock}[2]{%
+%     \noindent
+%     \colorbox{pink}{
+%     \begin{minipage}[t]{3.1cm} % Title
+%     \raggedright
+%     #1
+%     \end{minipage}
+% }
+% \colorbox{green}{
+%     \begin{minipage}[t]{14.9cm} % Content
+%     \raggedright
+%     #2
+%     \end{minipage}
+% }
+%     \vspace{25pt}
+% }
+
+% \titleformat{\subsection}{
+%   \setstretch{1.0}
+%   \raggedright
+%   \fontsize{14.5pt}{14.5pt}\selectfont
+% }{}{0em}{}
+
+\titleformat{\subsection}{
+  \setstretch{1.0}
+  \fontsize{14.5pt}{14.5pt}\selectfont
+}{}{0em}{}
+
+
+\newcommand{\fancy}[1]{
+  \setstretch{1.0}
+  \raggedright
+  \fontsize{14.5pt}{14.5pt}\selectfont
+  #1
+}
+
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+% \begin{tabularx}{\linewidth}{ @{}X X@{} }
+% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
+% \raisebox{-0.05\height}\faGithub\ username \ | \
+% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
+% \end{tabularx}
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+	\Huge{Prakruth Adari} \\[7.5pt]
+\href{https://github.com/pecom}{\raisebox{-0.05\height}\faGithub\ pecom} \ $|$ \ 
+	\href{https://pecom.github.io}{\raisebox{-0.05\height}\faGlobe \ pecom.github.io}  \ $|$ \ 
+	\href{https://orcid.org/0000-0001-9431-3806}{\raisebox{-0.05\height}\faOrcid \ 0000-0001-9431-3806} \ $|$ \
+	\href{mailto:prakruth.adari@stonybrook.edu}{\raisebox{-0.05\height}\faEnvelope \ prakruth.adari@stonybrook.edu} \ 
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+% EXPERIENCE SECTIONS
+%----------------------------------------------------------------------------------------
+
+%Interests/ Keywords/ Summary
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X@{}}	
+2021 - present & Ph.D., Physics and Astronomy at \textbf{Stony Brook University}\\
+
+2016 - 2020 & B.A. in Physics and Math at \textbf{Columbia University}\\ 
+\end{tabularx}
+
+
+\section{Research Experience}
+
+\begin{jobshort}{LSST Dark Energy Science Collaboration (DESC)}
+	\begin{itemize}[label={}]
+		\item \underline{Catalog based detection of unrecognized blends} - Use of AI/ML tools to detect unrecognized blends at the catalog level. Proof of concept work that could be used to improve weak lensing. Paper listed below.
+		\item \underline{Unrecognized blends + Anacal Shear Calibration} - Testing how removal of unrecognized blends can help improve shear calibration within the Anacal framework. On-going work expected to finish early 2026.
+		\item \underline{friendly} - Leading \textit{friendly} project to consolidate efforts on defining, detecting, and studying unrecognized blends for different science cases. On-going software work expected to finish late 2026.
+	\end{itemize}
+\end{jobshort}
+
+
+% \begin{jobshort}{Vera C. Rubin Observatory}
+% 	Worked on commissioning the telescope by stress testing the cluster weak lensing science pipelines, creating a independent photometric redshift (photo-$z$) validation suite, and studying the active optics system. 
+% 	For cluster weak lensing, this included leading efforts on source selection, creating $N(z)$ estimates, and comparing shear calibrations between shapeHSM and Anacal.
+% 	For photo-$z$, created a DESI matched catalog to validate the performance of various photo-$z$ estimators when only given 4 bands and on a different patch of sky than training.
+% \end{jobshort}
+
+\begin{jobshort}{Vera C. Rubin Observatory}
+	\begin{itemize}[label={}]
+		\item \underline{Cluster commissioning} - Stress testing Rubin pipelines by conducting cluster weak lensing science. Worked on source selection, Anacal shear measurements, and $N(z)$ estimates. Also created an independent photo-z validation set. Paper and technotes listed below.
+		\item \underline{DP1 Photo-z} - Created an independent photo-$z$ validation set with DESI cross matched spec-$z$ to test and validate DP1 photo-$z$ estimates. Paper and technote listed below.
+		\item \underline{Active Optics} - Helped characterize active optics system by studying variation in measured and fit parameters between nights.
+	\end{itemize}
+\end{jobshort}
+
+
+\begin{jobshort}{SENSEI}
+	\begin{itemize}[label={}]
+		\item \underline{SENSEI backgrounds} - Characterized backgrounds for SENSEI dark matter direct detection experiment. Optimized masks and binning parameters to maximize signal on Skipper CCDs. Papers listed below.
+	\end{itemize}
+\end{jobshort}
+
+\section{Honors and Awards}
+\begin{tabularx}{\linewidth}{@{}l X@{}}	
+DOE SCGSR Fellowship (\$10,800) & \hfill Department of Energy - 2025 \\
+Lourie Fellowship (\$6,000) & \hfill Stony Brook University - 2024 \\
+Gerald Brown Prize (\$1,000) & \hfill Stony Brook University - 2023 \\
+DOE SULI (\$12,000) & \hfill Department of Energy - 2020 \\ 
+DOE SULI (\$5,300) & \hfill Department of Energy - 2018
+\end{tabularx}
+
+
+\section{Publications}
+
+
+\begin{adjustwidth}{2.0cm}{}
+	\subsection*{\hspace{-2cm}Major Author}
+ 	\begin{refsection}[major.bib]
+ 	\nocite{*}
+	\printbibliography[heading=none]
+ 	\end{refsection}
+\end{adjustwidth}
+
+\begin{adjustwidth}{2.0cm}{}
+	\subsection*{\hspace{-2cm}Contributing Author}
+ 	\begin{refsection}[minor.bib]
+ 	\nocite{*}
+	\printbibliography[heading=none]
+ 	\end{refsection}
+\end{adjustwidth}
+
+\section{Talks and Posters}
+\begin{adjustwidth}{2.0cm}{}
+	\subsection*{\hspace{-2cm}Invited Talks}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}	
+		Seminar, ASIAA & \hfill Taipei, Taiwan - 2025 \\
+		Talk, Parity Violation from Home & \hfill  Online - 2024 \\
+		Seminar, DESI Lyman-$\alpha$ Working Group & \hfill Online - 2024 \\
+	\end{tabularx}
+\end{adjustwidth}
+
+\begin{adjustwidth}{2.0cm}{}
+	\subsection*{\hspace{-2cm}Contributed Talks}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}	
+		Plenary, DESC Collaboration Meeting & \hfill Urbana-Champaign, IL - 2025 \\
+		Plenary, DESC Collaboration Meeting & \hfill Menlo Park, CA - 2023 \\
+	\end{tabularx}
+\end{adjustwidth}
+
+\begin{adjustwidth}{2.0cm}{}
+	\subsection*{\hspace{-2cm}Posters}
+	\begin{tabularx}{\linewidth}{X X}	
+		DESC Collaboration Meeting & \hfill Urbana-Champaign, IL - 2025 \\
+		Cosmology and galaxy astrophysics with simulations and machine learning &  \hfill New York, NY - 2024 \\
+		DESC Collaboration Meeting & \hfill Z\"urich, Switzerland - 2024 \\
+		DESC Collaboration Meeting & \hfill Menlo Park, CA - 2023 \\
+	\end{tabularx}
+\end{adjustwidth}
+
+%Experience
+\section{Teaching Experience}
+Teaching Assistant
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+	ASTRO 443: Observational Techniques in Astronomy & \hfill 2023 \\
+	PHY 134: Classical Physics Laboratory II & \hfill 2023 \\
+	PHY 121: Physics for the Life Sciences I & \hfill 2022 \\
+	IACS Python Summer Bootcamp & \hfill 2021
+\end{tabularx}
+
+
+\section{Mentoring}
+\begin{adjustwidth}{2.0cm}{}
+	\subsection*{\hspace{-2cm}Gunjan Deshpande}
+	Graduate student in Data Science at Stony Brook. Worked on investigating possible improvements to catalog-based detection of unrecognized blends by including AGNs and testing Random Forest variants (XGBoost, Extremely Randomized Forests).
+\end{adjustwidth}
+
+\section{Institutional Service}
+\begin{adjustwidth}{2.0cm}{}
+	\subsection*{\hspace{-2cm}Quality of Life Analysis}
+	Ran a ``Quality of Life'' survey to assess students mental and physical wellbeing along with collecting views on the department. Helped design, disseminate, and analyze survey. Culminated into a presentation for the faculty and chair of the department leading to various improvements including pay and increased academic support for incoming students.
+	\subsection*{\hspace{-2cm}PGSA Treasurer}
+	Served as Physics Graduate Student Association (PGSA) treasurer from 2023-2025. Helped schedule and run tea time, organize and procure materials for social events, and schedule practice talks during the semester.
+\end{adjustwidth}
+
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS
+%----------------------------------------------------------------------------------------
+
+
+	
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+
+% \section{Skills}
+% \begin{tabularx}{\linewidth}{@{}l X@{}}
+% Some Skills &  \normalsize{This, That, Some of this and that etc.}\\
+% Some More Skills  &  \normalsize{Also some more of this, Some more that, And some of this and that etc.}\\  
+% \end{tabularx}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}
